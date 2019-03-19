@@ -1,1 +1,7 @@
-sudo pacman-key --init
+#!/usr/bin/env bash
+
+INIT_SCRIPT="${BASH_SOURCE%/*}/scripts/init.sh"
+
+chmod +x ${INIT_SCRIPT}
+
+${INIT_SCRIPT}

@@ -1,12 +1,18 @@
+#!/usr/bin/env bash
+
 function _arch_keys() {
     sudo pacman-key --init
     sudo pacman-key --populate
 }
 
+function _install() {
+    yay -S --noconfirm "$@"
+}
+
 function _install_yay() {
     if ! [ -x "$(command -v yay)" ]; then
         set -xe
-        sudo pacman -Sy git
+        sudo pacman -Sy --noconfirm git
         mkdir -p temp-yay-repos
         cd temp-yay-repos
         git clone https://aur.archlinux.org/package-query.git
@@ -25,4 +31,5 @@ function _install_yay() {
 
 function _init() {
     _install_yay
+    _install zsh oh-my-zsh-git i3-gaps polybar compton
 }
